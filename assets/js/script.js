@@ -32,7 +32,11 @@ function runGame(gameType) {
 
     if (gameType === 'addition') {
         displayAdditionQuestion(num1, num2);
-    } else {
+    }
+    else if (gameType === 'multiply') {
+        displayMultiplyQuestion(num1, num2);
+    }
+    else {
         alert(`Unkown game type: ${gameType}`);
         throw `Unkown game type: ${gameType}. Aborting!`;
     }
@@ -64,13 +68,18 @@ function checkAnswer() {
   * and returns the correct answer
 */
 function calculateCorrectAnswer() {
+
     let operand1 = parseInt(document.getElementById('operand1').innerText);
     let operand2 = parseInt(document.getElementById('operand2').innerText);
     let operator = document.getElementById('operator').innerText;
 
     if (operator === '+') {
         return [operand1 + operand2, 'addition'];
-    } else {
+    }
+    else if (operator === 'x') {
+        return [operand1 * operand2, 'multiply'];
+    }
+    else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
@@ -80,6 +89,7 @@ function calculateCorrectAnswer() {
  * Gets current score from the DOM and increments by 1
  */
 function incrementScore() {
+
     let oldScore = parseInt(document.getElementById('score').innerText);
     document.getElementById('score').innerText = ++oldScore;
 
@@ -89,22 +99,28 @@ function incrementScore() {
  * Gets current tally of wrong answers from the DOM and increments by 1
  */
 function incrementWrongAnswer() {
+
     let oldScore = parseInt(document.getElementById('incorrect').innerText);
     document.getElementById('incorrect').innerText = ++oldScore;
+
 }
 
 function displayAdditionQuestion(operand1, operand2) {
+
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = '+';
+
 }
 
 function displaySubtractQuestion() {
 
 }
 
-function displayMultiplyQuestion() {
-
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = 'x';
 }
 
 function displayDivisionQuestion() {
